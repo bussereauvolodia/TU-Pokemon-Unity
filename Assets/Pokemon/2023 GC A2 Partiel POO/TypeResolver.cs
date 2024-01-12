@@ -27,7 +27,24 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// </returns>
         public static float GetFactor(TYPE attacker, TYPE receiver)
         {
-            throw new NotImplementedException();
+            if (receiver == TYPE.NORMAL) return 1;
+            switch (attacker)
+            {
+                case TYPE.NORMAL:
+                    return 1;
+                    break;
+                case TYPE.WATER:
+                    return receiver == TYPE.FIRE ? 1.2f : receiver == TYPE.GRASS ? 0.8f : 1;
+                    break;
+                case TYPE.FIRE:
+                    return receiver == TYPE.GRASS ? 1.2f : receiver == TYPE.WATER ? 0.8f : 1;
+                    break;
+                case TYPE.GRASS:
+                    return receiver == TYPE.WATER ? 1.2f : receiver == TYPE.FIRE ? 0.8f : 1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(attacker), attacker, null);
+            }
         }
 
     }
